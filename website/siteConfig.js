@@ -11,18 +11,19 @@
 // List of projects/orgs using your project for the users page.
 const users = [
   {
-    caption: 'User1',
+    caption: 'liuxiyang',
     // You will need to prepend the image path with your baseUrl
     // if it is not '/', like: '/test-site/img/docusaurus.svg'.
-    image: '/img/docusaurus.svg',
-    infoLink: 'https://www.facebook.com',
+    image: '/webstatic/img/lxy-img.jpg',
+    infoLink: 'https://github.com/liuxiyang641',
     pinned: true,
   },
 ];
 
+
 const siteConfig = {
-  title: 'Test Site', // Title for your website.
-  tagline: 'A website for testing',
+  title: 'lxy\'s api docs & blogs', // Title for your website.
+  tagline: 'A website for docs',
   url: 'https://github.com/liuxiyang641', // Your website URL
   baseUrl: '/docusaurus-liuxiyang/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
@@ -36,6 +37,9 @@ const siteConfig = {
   // e.g., for the https://JoelMarcey.github.io site, it would be set like...
   //   organizationName: 'JoelMarcey'
 
+  blogSidebarTitle: { default: 'Recent posts1', all: 'All blog posts' },
+  blogSidebarCount: 'ALL',
+
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     {doc: 'doc1', label: 'Docs'},
@@ -48,9 +52,9 @@ const siteConfig = {
   users,
 
   /* path to images for header/footer */
-  headerIcon: 'img/docusaurus.svg',
-  footerIcon: 'img/docusaurus.svg',
-  favicon: 'img/favicon.png',
+  headerIcon: '',
+  footerIcon: '',
+  favicon: '',
 
   /* Colors for website */
   colors: {
@@ -73,7 +77,7 @@ const siteConfig = {
   */
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
-  copyright: `Copyright © ${new Date().getFullYear()} Your Name or Your Company Name`,
+  copyright: `Copyright © ${new Date().getFullYear()} liu xiyang`,
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
@@ -89,14 +93,14 @@ const siteConfig = {
   cleanUrl: true,
 
   // Open Graph and Twitter card images.
-  ogImage: 'img/docusaurus.png',
-  twitterImage: 'img/docusaurus.png',
+  ogImage: 'img/',
+  twitterImage: '',
 
   // Show documentation's last contributor's name.
   // enableUpdateBy: true,
 
   // Show documentation's last update time.
-  // enableUpdateTime: true,
+  enableUpdateTime: true,
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
