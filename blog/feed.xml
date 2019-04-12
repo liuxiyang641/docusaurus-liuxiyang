@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
     <channel>
-        <title>Test Site Blog</title>
+        <title>lxy&apos;s api docs &amp; blogs Blog</title>
         <link>https://github.com/liuxiyang641/docusaurus-liuxiyang/blog</link>
-        <description>The best place to stay up-to-date with the latest Test Site news and events.</description>
-        <lastBuildDate>Tue, 24 Oct 2017 06:00:00 GMT</lastBuildDate>
+        <description>The best place to stay up-to-date with the latest lxy&apos;s api docs &amp; blogs news and events.</description>
+        <lastBuildDate>Fri, 12 Apr 2019 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
-            <title>Test Site Blog</title>
-            <url>https://github.com/liuxiyang641/docusaurus-liuxiyang/img/docusaurus.svg</url>
+            <title>lxy&apos;s api docs &amp; blogs Blog</title>
+            <url>https://github.com/liuxiyang641/docusaurus-liuxiyang/</url>
             <link>https://github.com/liuxiyang641/docusaurus-liuxiyang/blog</link>
         </image>
-        <copyright>Copyright © 2019 Your Name or Your Company Name</copyright>
+        <copyright>Copyright © 2019 liu xiyang</copyright>
+        <item>
+            <title><![CDATA[web前端基础知识介绍]]></title>
+            <link>https://github.com/liuxiyang641/docusaurus-liuxiyang/blog/2019/04/12/basic-web-front-end-introduction.html</link>
+            <guid>https://github.com/liuxiyang641/docusaurus-liuxiyang/blog/2019/04/12/basic-web-front-end-introduction.html</guid>
+            <pubDate>Fri, 12 Apr 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>这是一个简要的web前端介绍</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[New Version 1.0.0]]></title>
             <link>https://github.com/liuxiyang641/docusaurus-liuxiyang/blog/2017/10/24/new-version-1.0.0.html</link>

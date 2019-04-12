@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://github.com/liuxiyang641/docusaurus-liuxiyang/blog</id>
-    <title>Test Site Blog</title>
-    <updated>2017-10-24T06:00:00Z</updated>
+    <title>lxy&apos;s api docs &amp; blogs Blog</title>
+    <updated>2019-04-12T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://github.com/liuxiyang641/docusaurus-liuxiyang/blog"/>
-    <subtitle>The best place to stay up-to-date with the latest Test Site news and events.</subtitle>
-    <logo>https://github.com/liuxiyang641/docusaurus-liuxiyang/img/docusaurus.svg</logo>
-    <rights>Copyright © 2019 Your Name or Your Company Name</rights>
+    <subtitle>The best place to stay up-to-date with the latest lxy&apos;s api docs &amp; blogs news and events.</subtitle>
+    <logo>https://github.com/liuxiyang641/docusaurus-liuxiyang/</logo>
+    <rights>Copyright © 2019 liu xiyang</rights>
+    <entry>
+        <title type="html"><![CDATA[web前端基础知识介绍]]></title>
+        <id>https://github.com/liuxiyang641/docusaurus-liuxiyang/blog/2019/04/12/basic-web-front-end-introduction.html</id>
+        <link href="https://github.com/liuxiyang641/docusaurus-liuxiyang/blog/2019/04/12/basic-web-front-end-introduction.html">
+        </link>
+        <updated>2019-04-12T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>这是一个简要的web前端介绍</p>
+]]></summary>
+        <author>
+            <name>liu xiyang</name>
+            <uri>https://github.com/liuxiyang641</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[New Version 1.0.0]]></title>
         <id>https://github.com/liuxiyang641/docusaurus-liuxiyang/blog/2017/10/24/new-version-1.0.0.html</id>
