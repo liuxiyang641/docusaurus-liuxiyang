@@ -26,6 +26,7 @@ const siteConfig = {
   tagline: 'A website for docs',
   url: 'https://github.com/liuxiyang641', // Your website URL
   baseUrl: '/docusaurus-liuxiyang/', // Base URL for your project */
+  repoUrl: 'https://github.com/liuxiyang641/docusaurus-liuxiyang/',
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
@@ -42,11 +43,12 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'doc1', label: 'Docs'},
-    {doc: 'doc4', label: 'API'},
-    {page: 'help', label: 'Help'},
+    {doc: 'html-css/web-basic-intro', label: 'HTML&CSS'},
     {blog: true, label: 'Blog'},
   ],
+  onPageNav: 'separate',
+  docsSideNavCollapsible: true,
+
 
   // If you have users set above, you add it here:
   users,

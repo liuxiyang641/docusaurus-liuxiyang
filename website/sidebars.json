@@ -1,10 +1,7 @@
 {
-  "docs": {
-    "Docusaurus": ["doc1"],
-    "First Category": ["doc2"],
-    "Second Category": ["doc3"]
-  },
-  "docs-other": {
-    "First Category": ["doc4", "doc5"]
+  "docs-of-html&css": {
+    "WEB基础": ["html-css/web-basic-intro"],
+    "HTML基础": ["html-css/html-basic-hyperlink"],
+    "CSS基础": [""]
   }
 }
