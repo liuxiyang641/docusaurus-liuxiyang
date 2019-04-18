@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Web 基础介绍 · lxy&#x27;s api docs &amp; blogs</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;&lt;em&gt;以下内容主要来自&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/Dealing_with_files&quot;&gt;MDN&lt;/a&gt;以及个人理解&lt;/em&gt;&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Web 基础介绍 · lxy&#x27;s api docs &amp; blogs"/><meta property="og:type" content="website"/><meta property="og:url" content="https://github.com/liuxiyang641/docusaurus-liuxiyang/"/><meta property="og:description" content="&lt;p&gt;&lt;em&gt;以下内容主要来自&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/Dealing_with_files&quot;&gt;MDN&lt;/a&gt;以及个人理解&lt;/em&gt;&lt;/p&gt;
+"/><meta property="og:image" content="https://github.com/liuxiyang641/docusaurus-liuxiyang/img/"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/docusaurus-liuxiyang/"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><link rel="alternate" type="application/atom+xml" href="https://github.com/liuxiyang641/docusaurus-liuxiyang/blog/atom.xml" title="lxy&#x27;s api docs &amp; blogs Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://github.com/liuxiyang641/docusaurus-liuxiyang/blog/feed.xml" title="lxy&#x27;s api docs &amp; blogs Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/docusaurus-liuxiyang/css/main.css"/><script src="/docusaurus-liuxiyang/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/docusaurus-liuxiyang/"><h2 class="headerTitle">lxy&#x27;s api docs &amp; blogs</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive siteNavItemActive"><a href="/docusaurus-liuxiyang/docs/html-css/web-basic-intro" target="_self">HTML&amp;CSS</a></li><li class=""><a href="/docusaurus-liuxiyang/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>WEB基础</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">WEB基础<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem navListItemActive"><a class="navItem" href="/docusaurus-liuxiyang/docs/html-css/web-basic-intro">Web 基础介绍</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">HTML基础<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docusaurus-liuxiyang/docs/html-css/html-basic-hyperlink">HTML基础之超链接</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Web 基础介绍</h1></header><article><div><span><p><em>以下内容主要来自<a href="https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/Dealing_with_files">MDN</a>以及个人理解</em></p>
+<h2><a class="anchor" aria-hidden="true" id="1-文件命名规范建议"></a><a href="#1-文件命名规范建议" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. 文件命名规范建议</h2>
+<ol>
+<li>杜绝空格：不同的操作系统对于文件名中的空格处理是不一样的，比如有的会将带空格的文字当做两个文件来处理，有的会用空格编码来替代空格</li>
+<li>采用小写：不是所有的系统都是大小写敏感的</li>
+<li>最好采用连字符<code>-</code>作为词间隔：谷歌搜索会根据连字符把词拆开</li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="2-html基础知识"></a><a href="#2-html基础知识" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. HTML基础知识</h2>
+<h3><a class="anchor" aria-hidden="true" id="21-什么是html"></a><a href="#21-什么是html" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.1. 什么是HTML？</h3>
+<p>HTML是一种标记语言，用来结构化描述网页内容；HTML首次公开描述于1991年</p>
+<blockquote>
+<p>HTML is not a programming language; it is a markup language that defines the structure of your content.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="22-html的组成"></a><a href="#22-html的组成" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.2. HTML的组成</h3>
+<ol>
+<li>HTML(Hypertext Markup Language)由元素<u>element</u>组成，一个element的核心在于描述类型的<u>tag</u></li>
+<li>tag的类型有两种，一种是闭合的tag，例如<code>&lt;p&gt;&lt;/p&gt;</code>，中间可以存放文本或者其它的element，另一种是empty tag，直接就是闭合的tag，如<code>&lt;img&gt;</code>  <br>
+<img src="/docusaurus-liuxiyang/docs/assets/web/4CFD3656-0522-4EDC-974F-89493ED4E81E.png" alt="html element"></li>
+<li>tag都有左右闭合的尖角括号，括号内除了本身的tag名(<em>如p/img</em>)，还可以填入属性，如<code>img</code>标签的<code>src</code>，属性的格式为 <strong>属性名=“属性值”</strong>，属性之间以空格分开。</li>
+</ol>
+<pre><code class="hljs css language-HTML"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"images/firefox-icon.png"</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">"My test image"</span>&gt;</span>
+</code></pre>
+<ol start="4">
+<li>element是相互嵌套的，子element一定是不会超过父element界限的，不存在同一层级不同子element范围的相互重叠。</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="3-css基础知识"></a><a href="#3-css基础知识" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3. CSS基础知识</h3>
+<h4><a class="anchor" aria-hidden="true" id="31-什么是css"></a><a href="#31-什么是css" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3.1. 什么是CSS</h4>
+<blockquote>
+<p>Like HTML, CSS is not really a programming language. It is not a markup language either — it is a style sheet language.</p>
+</blockquote>
+<p>它的意义在于能够赋给HTML中的element样式</p>
+<h3><a class="anchor" aria-hidden="true" id="32-css的组成"></a><a href="#32-css的组成" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3.2. CSS的组成</h3>
+<ol>
+<li>CSS(Cascading Style Sheets)的核心思想就是通过一个选择器选择出需要赋予样式的元素，然后给这些元素赋予一系列的样式规则。当然，我们可以直接在HTML的tag当中，但这样的问题一个是只能style一个具体的元素，无法style多个元素；二是在tag里面写大量的样式属性会极大的降低可读性，维护性也会变差。
+<img src="/docusaurus-liuxiyang/docs/assets/web/F4E66167-96A6-44B3-B5A5-173BE025284E.png" alt="css 组成"></li>
+<li>页面的总样式就是一个个box的相互覆盖</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="33-css语法"></a><a href="#33-css语法" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3.3. css语法</h3>
+<ul>
+<li>一系列css rule的集合。</li>
+<li>如果一条css声明无效，那么该条语句会被跳过，不会报错。
+<img src="/docusaurus-liuxiyang/docs/assets/web/EC425128-38EB-4567-9960-1AE88E30B775.png" alt="92461f8ee8cc3141f88bca514e9993ee"></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="4-dom与html-css"></a><a href="#4-dom与html-css" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4. DOM与HTML、CSS</h2>
+<blockquote>
+<ol>
+<li>The browser converts HTML and CSS into the DOM (Document Object Model). The DOM represents the document in the computer's memory. It combines the document's content with its style.</li>
+<li>The browser displays the contents of the DOM.</li>
+</ol>
+</blockquote>
+<p>每一个元素、属性、文本都是DOM节点。
+<img src="/docusaurus-liuxiyang/docs/assets/web/5BB5C2E1-3636-45B4-9242-59288FA07793.svg" alt="Dom pic"></p>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-4-12</em></div><div class="docs-prevnext"><a class="docs-next button" href="/docusaurus-liuxiyang/docs/html-css/html-basic-hyperlink"><span>HTML基础之超链接</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#1-文件命名规范建议">1. 文件命名规范建议</a></li><li><a href="#2-html基础知识">2. HTML基础知识</a><ul class="toc-headings"><li><a href="#21-什么是html">2.1. 什么是HTML？</a></li><li><a href="#22-html的组成">2.2. HTML的组成</a></li><li><a href="#3-css基础知识">3. CSS基础知识</a></li><li><a href="#32-css的组成">3.2. CSS的组成</a></li><li><a href="#33-css语法">3.3. css语法</a></li></ul></li><li><a href="#4-dom与html-css">4. DOM与HTML、CSS</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/docusaurus-liuxiyang/" class="nav-home"></a><div><h5>Docs</h5><a href="/docusaurus-liuxiyang/docs/en/doc1.html">Getting Started</a><a href="/docusaurus-liuxiyang/docs/en/doc2.html">Guides</a><a href="/docusaurus-liuxiyang/docs/en/doc3.html">API Reference</a></div><div><h5>More</h5><a href="/docusaurus-liuxiyang/blog">Blog</a><a class="github-button" href="https://github.com/liuxiyang641/docusaurus-liuxiyang/" data-icon="octicon-star" data-count-href="/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 liu xiyang</section></footer></div></body></html>
