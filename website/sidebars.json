@@ -3,5 +3,10 @@
     "WEB基础": ["html-css/web-basic-intro"],
     "HTML基础": ["html-css/html-basic-hyperlink"],
     "CSS基础": [""]
+  },
+  "docs-of-react": {
+  	"React基础": [""],
+  	"React进阶": ["react/react-hoc"]
   }
+
 }

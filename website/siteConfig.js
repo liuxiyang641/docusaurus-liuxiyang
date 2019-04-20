@@ -22,7 +22,7 @@ const users = [
 
 
 const siteConfig = {
-  title: 'lxy\'s api docs & blogs', // Title for your website.
+  title: 'Lxy\'s blog for learning', // Title for your website.
   tagline: 'A website for docs',
   url: 'https://github.com/liuxiyang641', // Your website URL
   baseUrl: '/docusaurus-liuxiyang/', // Base URL for your project */
@@ -44,6 +44,7 @@ const siteConfig = {
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     {doc: 'html-css/web-basic-intro', label: 'HTML&CSS'},
+    {doc: 'react/react-hoc', label: 'React'},
     {blog: true, label: 'Blog'},
   ],
   onPageNav: 'separate',
@@ -107,6 +108,7 @@ const siteConfig = {
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   //   repoUrl: 'https://github.com/facebook/test-site',
+  usePrism: ['jsx'],
 };
 
 module.exports = siteConfig;
