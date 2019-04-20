@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
     <channel>
-        <title>lxy&apos;s api docs &amp; blogs Blog</title>
+        <title>Lxy&apos;s blog for learning Blog</title>
         <link>https://github.com/liuxiyang641/docusaurus-liuxiyang/blog</link>
-        <description>The best place to stay up-to-date with the latest lxy&apos;s api docs &amp; blogs news and events.</description>
+        <description>The best place to stay up-to-date with the latest Lxy&apos;s blog for learning news and events.</description>
         <lastBuildDate>Fri, 12 Apr 2019 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
-            <title>lxy&apos;s api docs &amp; blogs Blog</title>
+            <title>Lxy&apos;s blog for learning Blog</title>
             <url>https://github.com/liuxiyang641/docusaurus-liuxiyang/</url>
             <link>https://github.com/liuxiyang641/docusaurus-liuxiyang/blog</link>
         </image>

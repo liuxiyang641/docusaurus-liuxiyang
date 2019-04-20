@@ -1,0 +1,414 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>React高阶组件 · Lxy&#x27;s blog for learning</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;以下内容来自:&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="React高阶组件 · Lxy&#x27;s blog for learning"/><meta property="og:type" content="website"/><meta property="og:url" content="https://github.com/liuxiyang641/docusaurus-liuxiyang/"/><meta property="og:description" content="&lt;p&gt;以下内容来自:&lt;/p&gt;
+"/><meta property="og:image" content="https://github.com/liuxiyang641/docusaurus-liuxiyang/img/"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/docusaurus-liuxiyang/"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css"/><link rel="alternate" type="application/atom+xml" href="https://github.com/liuxiyang641/docusaurus-liuxiyang/blog/atom.xml" title="Lxy&#x27;s blog for learning Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://github.com/liuxiyang641/docusaurus-liuxiyang/blog/feed.xml" title="Lxy&#x27;s blog for learning Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/docusaurus-liuxiyang/css/prism.css"/><link rel="stylesheet" href="/docusaurus-liuxiyang/css/main.css"/><script src="/docusaurus-liuxiyang/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/docusaurus-liuxiyang/"><h2 class="headerTitle">Lxy&#x27;s blog for learning</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docusaurus-liuxiyang/docs/html-css/web-basic-intro" target="_self">HTML&amp;CSS</a></li><li class="siteNavGroupActive siteNavItemActive"><a href="/docusaurus-liuxiyang/docs/react/react-hoc" target="_self">React</a></li><li class=""><a href="/docusaurus-liuxiyang/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>React进阶</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">React进阶<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem navListItemActive"><a class="navItem" href="/docusaurus-liuxiyang/docs/react/react-hoc">React高阶组件</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">React高阶组件</h1></header><article><div><span><p>以下内容来自:</p>
+<ul>
+<li><a href="https://reactjs.org/docs/higher-order-components.html">React官网文档</a></li>
+<li><a href="https://www.robinwieruch.de/gentle-introduction-higher-order-components/">Robin Wieruch博客</a></li>
+<li><a href="https://roadtoreact.com/">《<em>The Road to learn React Your journey to master plain yet pragmatic React.js</em>》</a></li>
+<li><del>自身理解:(</del></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="1-hoc基础概念"></a><a href="#1-hoc基础概念" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1 HOC基础概念</h2>
+<h3><a class="anchor" aria-hidden="true" id="11-定义"></a><a href="#11-定义" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.1 定义</h3>
+<blockquote>
+<p>A <strong>higher-order component (HOC)</strong> is an advanced technique in React for reusing component logic. HOCs are not part of the React API, per se. They are a pattern that emerges from React’s compositional nature</p>
+</blockquote>
+<blockquote>
+<p>They <strong>take any input</strong> - most of the time a component, but also optional arguments - and <strong>return a component as output</strong>. The returned component is an enhanced version of the input component and can be used in your JSX</p>
+</blockquote>
+<pre><code class="hljs css language-jsx"><span class="token keyword">const</span> EnhancedComponent <span class="token operator">=</span> <span class="token function">higherOrderComponent</span><span class="token punctuation">(</span>WrappedComponent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="12-理解"></a><a href="#12-理解" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1.2 理解</h3>
+<ol>
+<li>高阶组件只是React建议的一种机制、模式，并非一个特殊的API。</li>
+<li>HOC的目的在于通过将不同的Component中相同的逻辑提取出来，在一个function实现这些通用逻辑，之后接受Component输入，“注入”通用逻辑，实现对component的增强，减少代码冗余，提高组件的复用性。这种通用逻辑的注入可以是向Component注入新的prop，可以是对Component的prop进行某种检查，进行条件渲染等。</li>
+<li>HOC的返回可以是一个class组件，function组件或者另外的HOC</li>
+<li>传入的Component作为<code>return</code>新的增强的组件的相对独立的一部分，因此 &lt;span style=“text-color: red”&gt;不要在高阶组件中直接修改传入组件（方法等）</span></li>
+</ol>
+<h2><a class="anchor" aria-hidden="true" id="2-实例"></a><a href="#2-实例" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2 实例</h2>
+<h3><a class="anchor" aria-hidden="true" id="21-对component注入新的prop"></a><a href="#21-对component注入新的prop" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.1 对Component注入新的prop</h3>
+<h4><a class="anchor" aria-hidden="true" id="211-思考与使用过程"></a><a href="#211-思考与使用过程" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.1.1 思考与使用过程</h4>
+<p>现在存在两个组件，<code>CommentList</code>与<code>BlogPost</code>，他们都从一个外部数据<code>DataSource</code>中获取数据进行展示。</p>
+<pre><code class="hljs css language-jsx"><span class="token keyword">class</span> <span class="token class-name">CommentList</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>handleChange <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">handleChange</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span>
+      <span class="token comment">// "DataSource" is some global data source</span>
+      comments<span class="token punctuation">:</span> DataSource<span class="token punctuation">.</span><span class="token function">getComments</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    DataSource<span class="token punctuation">.</span><span class="token function">addChangeListener</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleChange<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">componentWillUnmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    DataSource<span class="token punctuation">.</span><span class="token function">removeChangeListener</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleChange<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">handleChange</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      comments<span class="token punctuation">:</span> DataSource<span class="token punctuation">.</span><span class="token function">getComments</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+        <span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>comments<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">comment</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Comment</span></span> <span class="token attr-name">comment</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>comment<span class="token punctuation">}</span></span> <span class="token attr-name">key</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>comment<span class="token punctuation">.</span>id<span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span>
+        <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre><code class="hljs css language-jsx"><span class="token keyword">class</span> <span class="token class-name">BlogPost</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>handleChange <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">handleChange</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span>
+      blogPost<span class="token punctuation">:</span> DataSource<span class="token punctuation">.</span><span class="token function">getBlogPost</span><span class="token punctuation">(</span>props<span class="token punctuation">.</span>id<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    DataSource<span class="token punctuation">.</span><span class="token function">addChangeListener</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleChange<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">componentWillUnmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    DataSource<span class="token punctuation">.</span><span class="token function">removeChangeListener</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleChange<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">handleChange</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      blogPost<span class="token punctuation">:</span> DataSource<span class="token punctuation">.</span><span class="token function">getBlogPost</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>id<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">TextBlock</span></span> <span class="token attr-name">text</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>blogPost<span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>两个组件的区别：</p>
+<ol>
+<li>从<strong>DataSource</strong>中获取数据的方法不同，一个是<code>getComments</code>，一个是<code>getBlogPost</code></li>
+<li>展示数据的<code>render</code>函数不同。</li>
+</ol>
+<p>相同点：</p>
+<ol>
+<li>在组件挂载时subscribe <strong>DataSource</strong>，当<code>DataSource</code>发生改变后，调用<code>handleChange</code>重新渲染；同时卸载时移除listener</li>
+<li>都从<strong>DataSource</strong>中获取数据</li>
+</ol>
+<p>可以看到这两个组件存在相同的逻辑，即从<strong>DataSource</strong>中获取数据，进行渲染。当中存在冗余的代码，如果再写第三个组件，如<code>IssueList</code>，那么这个逻辑还要重复一个。
+因此我们可以采用以下的高阶组件提取通用逻辑：</p>
+<h5><a class="anchor" aria-hidden="true" id="1-定义高阶组件"></a><a href="#1-定义高阶组件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>（1）定义高阶组件</h5>
+<pre><code class="hljs css language-jsx"><span class="token comment">// This function takes a component...</span>
+<span class="token keyword">function</span> <span class="token function">withSubscription</span><span class="token punctuation">(</span><span class="token parameter">WrappedComponent<span class="token punctuation">,</span> selectData</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...and returns another component...</span>
+  <span class="token keyword">return</span> <span class="token keyword">class</span> <span class="token class-name">EnhancedComponent</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>handleChange <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">handleChange</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span>
+        data<span class="token punctuation">:</span> <span class="token function">selectData</span><span class="token punctuation">(</span>DataSource<span class="token punctuation">,</span> props<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// ... that takes care of the subscription...</span>
+      DataSource<span class="token punctuation">.</span><span class="token function">addChangeListener</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleChange<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">componentWillUnmount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     DataSource<span class="token punctuation">.</span><span class="token function">removeChangeListener</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleChange<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">handleChange</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        data<span class="token punctuation">:</span> <span class="token function">selectData</span><span class="token punctuation">(</span>DataSource<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// ... and renders the wrapped component with the fresh data!</span>
+      <span class="token comment">// Notice that we pass through any additional props</span>
+      <span class="token keyword">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">WrappedComponent</span></span> <span class="token attr-name">data</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>data<span class="token punctuation">}</span></span> <span class="token spread"><span class="token punctuation">{</span><span class="token punctuation">...</span><span class="token attr-value">this</span><span class="token punctuation">.</span><span class="token attr-value">props</span><span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>此HOC接受<code>WrappedComponent</code>，以及<code>selectData</code>两个参数，前者是需要增强的组件，后者是用来从<strong>DataSource</strong>中获取数据的function。
+注意到HOC返回的是一个增强的、新的class react组件，具有以下几个特征：</p>
+<ol>
+<li>local <code>state</code>中保存了通过HOC参数<code>selectData</code>拿到的数据</li>
+<li><code>render</code>函数返回的还是传入的<code>WrappedComponent</code>组件的实例，并且传入了一个新的<code>data</code>属性。</li>
+<li>需要注意，<code>{...this.props}</code>，保证了高阶组件实例生成时定传入的<code>props</code>都能够传入<code>WrappedComponent</code>组件。</li>
+</ol>
+<h5><a class="anchor" aria-hidden="true" id="2-重新定义原组件"></a><a href="#2-重新定义原组件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>（2）重新定义原组件</h5>
+<p>重新实现之前的<code>CommentList</code>与<code>BlogPost</code>组件，此时在它们的<code>render</code>函数中直接使用<code>this.props.data</code>来进行渲染，不需要再与<code>DataSource</code>进行交互。</p>
+<pre><code class="hljs css language-jsx"><span class="token keyword">class</span> <span class="token class-name">CommentList</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span>data<span class="token punctuation">,</span> <span class="token operator">...</span>res<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+        <span class="token punctuation">{</span>data<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">comment</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Comment</span></span> <span class="token attr-name">comment</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>comment<span class="token punctuation">}</span></span> <span class="token attr-name">key</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>comment<span class="token punctuation">.</span>id<span class="token punctuation">}</span></span> <span class="token spread"><span class="token punctuation">{</span><span class="token punctuation">...</span><span class="token attr-value">reas</span><span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span>
+        <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre><code class="hljs css language-jsx"><span class="token keyword">class</span> <span class="token class-name">CommentList</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+  <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span>data<span class="token punctuation">,</span> <span class="token operator">...</span>res<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">TextBlock</span></span> <span class="token attr-name">text</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>data<span class="token punctuation">}</span></span> <span class="token spread"><span class="token punctuation">{</span><span class="token punctuation">...</span><span class="token attr-value">res</span><span class="token punctuation">}</span></span><span class="token punctuation">/></span></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h5><a class="anchor" aria-hidden="true" id="3-定义增强组件"></a><a href="#3-定义增强组件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>（3）定义增强组件</h5>
+<pre><code class="hljs css language-jsx"><span class="token keyword">const</span> CommentListWithSubscription <span class="token operator">=</span> <span class="token function">withSubscription</span><span class="token punctuation">(</span>
+  CommentList<span class="token punctuation">,</span>
+  <span class="token punctuation">(</span><span class="token parameter">DataSource</span><span class="token punctuation">)</span> <span class="token operator">=></span> DataSource<span class="token punctuation">.</span><span class="token function">getComments</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> BlogPostWithSubscription <span class="token operator">=</span> <span class="token function">withSubscription</span><span class="token punctuation">(</span>
+  BlogPost<span class="token punctuation">,</span>
+  <span class="token punctuation">(</span><span class="token parameter">DataSource<span class="token punctuation">,</span> props</span><span class="token punctuation">)</span> <span class="token operator">=></span> DataSource<span class="token punctuation">.</span><span class="token function">getBlogPost</span><span class="token punctuation">(</span>props<span class="token punctuation">.</span>id<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>此时的<code>CommentListWithSubscription</code>与<code>BlogPostWithSubscription</code>是高阶组件<code>withSubscription</code>返回的新增强的class组件。</p>
+<h5><a class="anchor" aria-hidden="true" id="4-使用新的增强组件"></a><a href="#4-使用新的增强组件" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>(4) 使用新的增强组件</h5>
+<pre><code class="hljs css language-jsx"><span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span><span class="token punctuation">{</span>
+    <span class="token operator">...</span>
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token operator">...</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">CommentListWithSubscription</span></span> <span class="token attr-name">disabled</span><span class="token punctuation">/></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">BlogPostWithSubscription</span></span> <span class="token punctuation">/></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+        <span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>注意其中的<code>disableed</code>属性会一层层的传递给<code>Comment</code>组件，传递过程如下：</p>
+<ol>
+<li>首先是传入<code>withSubscription</code>返回的<code>EnhancedComponent</code>组件render函数中的<code>props</code></li>
+<li>通过return语句中<code>{...this.props}</code>被传递给<code>&lt;WrappedComponent /&gt;</code>组件</li>
+<li>此时<code>WrappedComponent</code>是<code>CommentList</code>，在它的render函数可通过<code>{...res}</code>传递给<code>&lt;Component /&gt;</code></li>
+</ol>
+<h4><a class="anchor" aria-hidden="true" id="212-总结"></a><a href="#212-总结" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.1.2 总结</h4>
+<p>可以看到这种方式的HOC没有直接改变传入的Component，而是传入新的<code>prop</code>，因此，在Component的<code>render</code>函数中可以使用新的<code>prop</code>进行渲染或其它操作。以上例子在<a href="https://reactjs.org/docs/higher-order-components.html">React docs</a>进一步了解。</p>
+<h3><a class="anchor" aria-hidden="true" id="22-条件渲染"></a><a href="#22-条件渲染" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.2 条件渲染</h3>
+<p>现在存在一个<code>ToDoList</code>组件</p>
+<pre><code class="hljs css language-jsx"><span class="token keyword">function</span> <span class="token function">TodoList</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> todos<span class="token punctuation">,</span> isLoadingTodos <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>isLoadingTodos<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Loading todos <span class="token operator">...</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>todos<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>todos<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>You have no Todos<span class="token punctuation">.</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+      <span class="token punctuation">{</span>todos<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">todo</span> <span class="token operator">=></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">TodoItem</span></span> <span class="token attr-name">key</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>todo<span class="token punctuation">.</span>id<span class="token punctuation">}</span></span> <span class="token attr-name">todo</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>todo<span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>可以看到有很多关于todos的条件渲染，我们可以尝试把这种条件渲染的逻辑提取出来，形成下面的情况：</p>
+<pre><code class="hljs css language-jsx"><span class="token keyword">const</span> <span class="token function-variable function">withLoadingIndicator</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">Component</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> isLoadingTodos<span class="token punctuation">,</span> <span class="token operator">...</span>others <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span>
+  isLoadingTodos
+    <span class="token operator">?</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Loading todos <span class="token operator">...</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token punctuation">:</span> <span class="token operator">&lt;</span>Component <span class="token punctuation">{</span> <span class="token operator">...</span>others <span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span>  <span class="token comment">// (1)</span>
+    
+<span class="token keyword">const</span> <span class="token function-variable function">withTodosNull</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">Component</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=></span>
+  <span class="token operator">!</span>props<span class="token punctuation">.</span>todos
+    <span class="token operator">?</span> <span class="token keyword">null</span>
+    <span class="token punctuation">:</span> <span class="token operator">&lt;</span>Component <span class="token punctuation">{</span> <span class="token operator">...</span>props <span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span> <span class="token comment">// (2)</span>
+ 
+<span class="token keyword">const</span> <span class="token function-variable function">withTodosEmpty</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">Component</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=></span>
+  <span class="token operator">!</span>props<span class="token punctuation">.</span>todos<span class="token punctuation">.</span>length
+    <span class="token operator">?</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>You have no Todos<span class="token punctuation">.</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+    <span class="token punctuation">:</span> <span class="token operator">&lt;</span>Component <span class="token punctuation">{</span> <span class="token operator">...</span>props <span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">></span> <span class="token comment">// (3)</span>
+</code></pre>
+<p>重新定义<code>ToDoList</code>组件：</p>
+<pre><code class="hljs css language-jsx"><span class="token keyword">const</span> <span class="token function-variable function">TodoList</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> todos <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=></span> 
+   <span class="token punctuation">(</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>
+      <span class="token punctuation">{</span>todos<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">todo</span> <span class="token operator">=></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">TodoItem</span></span> <span class="token attr-name">key</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>todo<span class="token punctuation">.</span>id<span class="token punctuation">}</span></span> <span class="token attr-name">todo</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>todo<span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">)</span><span class="token punctuation">}</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>之后利用这三个新的HOC，定义新的增强组件：</p>
+<pre><code class="hljs css language-jsx"><span class="token keyword">const</span> TodoListWithConditionalRendering <span class="token operator">=</span> <span class="token function">withLoadingIndicator</span><span class="token punctuation">(</span><span class="token function">withTodosNull</span><span class="token punctuation">(</span><span class="token function">withTodosEmpty</span><span class="token punctuation">(</span>TodoList<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 可以写成以下的形式</span>
+<span class="token comment">// const TodoListOne = withTodosEmpty(TodoList);</span>
+<span class="token comment">// const TodoListTwo = withTodosNull(TodoListOne);</span>
+<span class="token comment">// const TodoListThree = withLoadingIndicator(TodoListTwo);</span>
+</code></pre>
+<p>现在，生成增强组件的实例：</p>
+<pre><code class="hljs css language-jsx">    <span class="token operator">...</span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">TodoListWithConditionalRendering</span></span> <span class="token attr-name">isLoadingTodos</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token boolean">true</span><span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span>
+    <span class="token operator">...</span>
+</code></pre>
+<p><code>isLoadingTodos</code>属性通过 <code>(1)(2)(3)</code>层层传递给<code>TodoList</code>组件。
+更多的了解可以参看<a href="https://www.robinwieruch.de/gentle-introduction-higher-order-components/">A gentle Introduction to React's Higher Order Components</a></p>
+<h3><a class="anchor" aria-hidden="true" id="23-第三方库hoc例子"></a><a href="#23-第三方库hoc例子" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.3 第三方库HOC例子</h3>
+<p>让我们来看实际的例子：</p>
+<pre><code class="hljs css language-jsx">    <span class="token comment">// antd Form组件的使用 参见https://ant.design/components/form-cn/#Form.create(options)</span>
+    <span class="token keyword">import</span> <span class="token punctuation">{</span>Form<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'antd'</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">class</span> <span class="token class-name">CustomizedForm</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+    
+    <span class="token keyword">export</span> <span class="token keyword">default</span> CustomizedForm <span class="token operator">=</span> Form<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span>CustomizedForm<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>代码中的<code>Form.create()</code>方法接受一个<code>option</code>参数，该参数的部分属性如下表：</p>
+<table>
+<thead>
+<tr><th>参数</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td><code>name</code></td><td>设置表单域内字段<code>id</code>的前缀</td></tr>
+<tr><td><code>onValuesChange</code></td><td>任一表单域的值发生改变时的回调</td></tr>
+</tbody>
+</table>
+<p>一个使用的例子如下：</p>
+<pre><code class="hljs css language-jsx"><span class="token keyword">const</span> CustomizedForm <span class="token operator">=</span> Form<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">'global_state'</span><span class="token punctuation">,</span>
+  <span class="token function">onFieldsChange</span><span class="token punctuation">(</span><span class="token parameter">props<span class="token punctuation">,</span> changedFields</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    props<span class="token punctuation">.</span><span class="token function">onChange</span><span class="token punctuation">(</span>changedFields<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">mapPropsToFields</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      username<span class="token punctuation">:</span> Form<span class="token punctuation">.</span><span class="token function">createFormField</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token operator">...</span>props<span class="token punctuation">.</span>username<span class="token punctuation">,</span>
+        value<span class="token punctuation">:</span> props<span class="token punctuation">.</span>username<span class="token punctuation">.</span>value<span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">onValuesChange</span><span class="token punctuation">(</span><span class="token parameter">_<span class="token punctuation">,</span> values</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>values<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span>CustomComponent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p><code>Form.create()</code>方法返回的还是一个HOC，这个HOC单独接受一个组件输入，返回增强组件，即上面的<code>Form.create({})(CustomizedForm)</code>。
+此时在<code>CustomizedForm</code>组件中就可以使用被高阶组件注入的属性<code>form</code>。例如：</p>
+<pre><code class="hljs css language-jsx"><span class="token comment">// CustomizedForm</span>
+<span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span>
+      getFieldDecorator<span class="token punctuation">,</span> getFieldsError<span class="token punctuation">,</span> getFieldError<span class="token punctuation">,</span> isFieldTouched<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>form<span class="token punctuation">;</span>
+
+    <span class="token comment">// Only show error after a field is touched.</span>
+    <span class="token keyword">const</span> userNameError <span class="token operator">=</span> <span class="token function">isFieldTouched</span><span class="token punctuation">(</span><span class="token string">'userName'</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token function">getFieldError</span><span class="token punctuation">(</span><span class="token string">'userName'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Form</span></span> <span class="token attr-name">layout</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>inline<span class="token punctuation">"</span></span> <span class="token attr-name">onSubmit</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleSubmit<span class="token punctuation">}</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Form.Item</span></span>
+          <span class="token attr-name">validateStatus</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>userNameError <span class="token operator">?</span> <span class="token string">'error'</span> <span class="token punctuation">:</span> <span class="token string">''</span><span class="token punctuation">}</span></span>
+          <span class="token attr-name">help</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>userNameError <span class="token operator">||</span> <span class="token string">''</span><span class="token punctuation">}</span></span>
+        <span class="token punctuation">></span></span>
+          <span class="token punctuation">{</span><span class="token function">getFieldDecorator</span><span class="token punctuation">(</span><span class="token string">'userName'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+            rules<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> required<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> message<span class="token punctuation">:</span> <span class="token string">'Please input your username!'</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+          <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Input</span></span> <span class="token attr-name">prefix</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Icon</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>user<span class="token punctuation">"</span></span> <span class="token attr-name">style</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span> color<span class="token punctuation">:</span> <span class="token string">'rgba(0,0,0,.25)'</span> <span class="token punctuation">}</span><span class="token punctuation">}</span></span> <span class="token punctuation">/></span></span><span class="token punctuation">}</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Username<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+          <span class="token punctuation">)</span><span class="token punctuation">}</span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Form.Item</span></span><span class="token punctuation">></span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token class-name">Form</span></span><span class="token punctuation">></span></span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="24-使用注意事项"></a><a href="#24-使用注意事项" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2.4 使用注意事项</h3>
+<ol>
+<li>定义的HOC可以采用<code>with</code>开头</li>
+<li>不要在<code>render</code>中使用HOC，而是在<code>render</code>之外就使用HOC定义好新的增强组件，在render函数中直接使用HOC返回的增强组件。原因有以下两点：
+<ul>
+<li>效率：每次<code>render</code>执行时，都使用HOC生成新的增强组件，一方面效率较低，另一方面<code>virtual DOM</code>和<code>real DOM</code>比较时，新的增强组件与旧的组件不会认为是相同的。</li>
+<li>增强组件的状态丢失：每次<code>render</code>执行会卸载之前的增强组件，导致其中的<code>state</code>丢失</li>
+</ul></li>
+<li>静态方法需要特别对待：如果在原始组件中定义了静态方法，之后使用HOC返回的增强组件是没有该静态方法的。如：
+<pre><code class="hljs css language-jsx"><span class="token comment">// Define a static method</span>
+WrappedComponent<span class="token punctuation">.</span><span class="token function-variable function">staticMethod</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token comment">/*...*/</span><span class="token punctuation">}</span>
+<span class="token comment">// Now apply a HOC</span>
+<span class="token keyword">const</span> EnhancedComponent <span class="token operator">=</span> <span class="token function">enhance</span><span class="token punctuation">(</span>WrappedComponent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// The enhanced component has no static method</span>
+<span class="token keyword">typeof</span> EnhancedComponent<span class="token punctuation">.</span>staticMethod <span class="token operator">===</span> <span class="token string">'undefined'</span> <span class="token comment">// true</span>
+</code></pre>
+要解决这个问题，需要拷贝该静态方法：
+<pre><code class="hljs css language-jsx"><span class="token keyword">function</span> <span class="token function">enhance</span><span class="token punctuation">(</span><span class="token parameter">WrappedComponent</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">class</span> <span class="token class-name">Enhance</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span><span class="token comment">/*...*/</span><span class="token punctuation">}</span>
+<span class="token comment">// Must know exactly which method(s) to copy :(</span>
+Enhance<span class="token punctuation">.</span>staticMethod <span class="token operator">=</span> WrappedComponent<span class="token punctuation">.</span>staticMethod<span class="token punctuation">;</span>
+<span class="token keyword">return</span> Enhance<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></li>
+<li><code>ref</code>属性无法传递，原因在于<code>ref</code>不是和其它普通prop一起存在<code>props</code>中的，它会被React特殊处理，<code>ref</code>只会指向增强组件，而不是被包裹的原始Component。解决这个问题在于使用<code>React.forwardRef</code>，<a href="https://reactjs.org/docs/forwarding-refs.html"> Learn more about it in the forwarding refs section.</a></li>
+</ol>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-4-20 by liuxiyang</em></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#1-hoc基础概念">1 HOC基础概念</a><ul class="toc-headings"><li><a href="#11-定义">1.1 定义</a></li><li><a href="#12-理解">1.2 理解</a></li></ul></li><li><a href="#2-实例">2 实例</a><ul class="toc-headings"><li><a href="#21-对component注入新的prop">2.1 对Component注入新的prop</a></li><li><a href="#22-条件渲染">2.2 条件渲染</a></li><li><a href="#23-第三方库hoc例子">2.3 第三方库HOC例子</a></li><li><a href="#24-使用注意事项">2.4 使用注意事项</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/docusaurus-liuxiyang/" class="nav-home"></a><div><h5>Docs</h5><a href="/docusaurus-liuxiyang/docs/en/doc1.html">Getting Started</a><a href="/docusaurus-liuxiyang/docs/en/doc2.html">Guides</a><a href="/docusaurus-liuxiyang/docs/en/doc3.html">API Reference</a></div><div><h5>More</h5><a href="/docusaurus-liuxiyang/blog">Blog</a><a class="github-button" href="https://github.com/liuxiyang641/docusaurus-liuxiyang/" data-icon="octicon-star" data-count-href="/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 liu xiyang</section></footer></div></body></html>

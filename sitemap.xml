@@ -5,4 +5,5 @@
 <url> <loc>https://github.com/liuxiyang641/docusaurus-liuxiyang/blog/2019/04/12/basic-web-front-end-introduction</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
 <url> <loc>https://github.com/liuxiyang641/docusaurus-liuxiyang/docs/html-css/html-basic-hyperlink</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://github.com/liuxiyang641/docusaurus-liuxiyang/docs/html-css/html-basic-hyperlink" /> </url>
 <url> <loc>https://github.com/liuxiyang641/docusaurus-liuxiyang/docs/html-css/web-basic-intro</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://github.com/liuxiyang641/docusaurus-liuxiyang/docs/html-css/web-basic-intro" /> </url>
+<url> <loc>https://github.com/liuxiyang641/docusaurus-liuxiyang/docs/react/react-hoc</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://github.com/liuxiyang641/docusaurus-liuxiyang/docs/react/react-hoc" /> </url>
 </urlset>

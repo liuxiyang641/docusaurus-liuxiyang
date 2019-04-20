@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://github.com/liuxiyang641/docusaurus-liuxiyang/blog</id>
-    <title>lxy&apos;s api docs &amp; blogs Blog</title>
+    <title>Lxy&apos;s blog for learning Blog</title>
     <updated>2019-04-12T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://github.com/liuxiyang641/docusaurus-liuxiyang/blog"/>
-    <subtitle>The best place to stay up-to-date with the latest lxy&apos;s api docs &amp; blogs news and events.</subtitle>
+    <subtitle>The best place to stay up-to-date with the latest Lxy&apos;s blog for learning news and events.</subtitle>
     <logo>https://github.com/liuxiyang641/docusaurus-liuxiyang/</logo>
     <rights>Copyright © 2019 liu xiyang</rights>
     <entry>
