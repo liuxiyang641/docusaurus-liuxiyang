@@ -1,9 +1,8 @@
 ---
-id: react-hoc
-title: My Document
----  
-  
-  
+id: react-hoc 
+title: React高阶组件  
+---
+
 
 以下内容来自:
 - [React官网文档](https://reactjs.org/docs/higher-order-components.html)
@@ -16,7 +15,7 @@ title: My Document
 
 
 > They **take any input** - most of the time a component, but also optional arguments - and **return a component as output**. The returned component is an enhanced version of the input component and can be used in your JSX  
-```JavaScript
+```jsx
 const EnhancedComponent = higherOrderComponent(WrappedComponent);
 ```
 
@@ -29,7 +28,7 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 ### 2.1 对Component注入新的prop
 #### 2.1.1 思考与使用过程
 现在存在两个组件，`CommentList`与`BlogPost`，他们都从一个外部数据`DataSource`中获取数据进行展示。
-```JavaScript
+```jsx
 class CommentList extends React.Component {
   constructor(props) {
     super(props);
@@ -65,7 +64,7 @@ class CommentList extends React.Component {
   }
 }
 ```
-```JavaScript
+```jsx
 class BlogPost extends React.Component {
   constructor(props) {
     super(props);
@@ -105,7 +104,7 @@ class BlogPost extends React.Component {
 可以看到这两个组件存在相同的逻辑，即从**DataSource**中获取数据，进行渲染。当中存在冗余的代码，如果再写第三个组件，如`IssueList`，那么这个逻辑还要重复一个。
 因此我们可以采用以下的高阶组件提取通用逻辑：
 ##### （1）定义高阶组件
-```JavaScript
+```jsx
 // This function takes a component...
 function withSubscription(WrappedComponent, selectData) {
   // ...and returns another component...
@@ -148,7 +147,7 @@ function withSubscription(WrappedComponent, selectData) {
 3. 需要注意，`{...this.props}`，保证了高阶组件实例生成时定传入的`props`都能够传入`WrappedComponent`组件。
 ##### （2）重新定义原组件
 重新实现之前的`CommentList`与`BlogPost`组件，此时在它们的`render`函数中直接使用`this.props.data`来进行渲染，不需要再与`DataSource`进行交互。
-```JavaScript
+```jsx
 class CommentList extends React.Component {
   render() {
     const {data, ...res} = this.props
@@ -162,7 +161,7 @@ class CommentList extends React.Component {
   }
 }
 ```
-```JavaScript
+```jsx
 class CommentList extends React.Component {
   render() {
     const {data, ...res} = this.props
@@ -173,7 +172,7 @@ class CommentList extends React.Component {
 }
 ```
 ##### （3）定义增强组件
-```JavaScript
+```jsx
 const CommentListWithSubscription = withSubscription(
   CommentList,
   (DataSource) => DataSource.getComments()
@@ -186,7 +185,7 @@ const BlogPostWithSubscription = withSubscription(
 ```
 此时的`CommentListWithSubscription`与`BlogPostWithSubscription`是高阶组件`withSubscription`返回的新增强的class组件。
 ##### (4) 使用新的增强组件
-```JavaScript
+```jsx
 class App extends Component{
     ...
     render() {
@@ -208,7 +207,7 @@ class App extends Component{
 可以看到这种方式的HOC没有直接改变传入的Component，而是传入新的`prop`，因此，在Component的`render`函数中可以使用新的`prop`进行渲染或其它操作。以上例子在[React docs](https://reactjs.org/docs/higher-order-components.html)进一步了解。
 ### 2.2 条件渲染
 现在存在一个`ToDoList`组件
-```JavaScript
+```jsx
 function TodoList({ todos, isLoadingTodos }) {
   if (isLoadingTodos) {
     return (
@@ -238,7 +237,7 @@ function TodoList({ todos, isLoadingTodos }) {
 }
 ```
 可以看到有很多关于todos的条件渲染，我们可以尝试把这种条件渲染的逻辑提取出来，形成下面的情况：
-```JavaScript
+```jsx
 const withLoadingIndicator = (Component) => ({ isLoadingTodos, ...others }) =>
   isLoadingTodos
     ? <div><p>Loading todos ...</p></div>
@@ -255,14 +254,14 @@ const withTodosEmpty = (Component) => (props) =>
     : <Component { ...props } /> // (3)
 ```
 重新定义`ToDoList`组件：
-```JavaScript
+```jsx
 const TodoList = ({ todos }) => 
    (<div>
       {todos.map(todo => <TodoItem key={todo.id} todo={todo} />)}
     </div>);
 ```
 之后利用这三个新的HOC，定义新的增强组件：
-```JavaScript
+```jsx
 const TodoListWithConditionalRendering = withLoadingIndicator(withTodosNull(withTodosEmpty(TodoList)));
 // 可以写成以下的形式
 // const TodoListOne = withTodosEmpty(TodoList);
@@ -270,7 +269,7 @@ const TodoListWithConditionalRendering = withLoadingIndicator(withTodosNull(with
 // const TodoListThree = withLoadingIndicator(TodoListTwo);
 ```
 现在，生成增强组件的实例：
-```JavaScript
+```jsx
     ...
     <TodoListWithConditionalRendering isLoadingTodos={true} />
     ...
@@ -279,7 +278,7 @@ const TodoListWithConditionalRendering = withLoadingIndicator(withTodosNull(with
 更多的了解可以参看[A gentle Introduction to React's Higher Order Components](https://www.robinwieruch.de/gentle-introduction-higher-order-components/)
 ### 2.3 第三方库HOC例子
 让我们来看实际的例子：
-```JavaScript
+```jsx
     // antd Form组件的使用 参见https://ant.design/components/form-cn/#Form.create(options)
     import {Form} from 'antd';
     
@@ -293,7 +292,7 @@ const TodoListWithConditionalRendering = withLoadingIndicator(withTodosNull(with
 | `name` |设置表单域内字段`id`的前缀|
 |`onValuesChange`|任一表单域的值发生改变时的回调|
 一个使用的例子如下：
-```JavaScript
+```jsx
 const CustomizedForm = Form.create({
   name: 'global_state',
   onFieldsChange(props, changedFields) {
@@ -314,7 +313,7 @@ const CustomizedForm = Form.create({
 ```
 `Form.create()`方法返回的还是一个HOC，这个HOC单独接受一个组件输入，返回增强组件，即上面的`Form.create({})(CustomizedForm)`。
 此时在`CustomizedForm`组件中就可以使用被高阶组件注入的属性`form`。例如：
-```JavaScript
+```jsx
 // CustomizedForm
 render() {
     const {
@@ -345,7 +344,7 @@ render() {
     - 效率：每次`render`执行时，都使用HOC生成新的增强组件，一方面效率较低，另一方面`virtual DOM`和`real DOM`比较时，新的增强组件与旧的组件不会认为是相同的。
     - 增强组件的状态丢失：每次`render`执行会卸载之前的增强组件，导致其中的`state`丢失
 3. 静态方法需要特别对待：如果在原始组件中定义了静态方法，之后使用HOC返回的增强组件是没有该静态方法的。如：  
-    ```JavaScript
+    ```jsx
     // Define a static method
     WrappedComponent.staticMethod = function() {/*...*/}
     // Now apply a HOC
@@ -355,7 +354,7 @@ render() {
     typeof EnhancedComponent.staticMethod === 'undefined' // true
     ```  
     要解决这个问题，需要拷贝该静态方法：
-    ```JavaScript
+    ```jsx
     function enhance(WrappedComponent) {
     class Enhance extends React.Component {/*...*/}
     // Must know exactly which method(s) to copy :(
@@ -364,4 +363,3 @@ render() {
    }
    ```
 4. `ref`属性无法传递，原因在于`ref`不是和其它普通prop一起存在`props`中的，它会被React特殊处理，`ref`只会指向增强组件，而不是被包裹的原始Component。解决这个问题在于使用`React.forwardRef`，[ Learn more about it in the forwarding refs section.](https://reactjs.org/docs/forwarding-refs.html)
-

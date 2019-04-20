@@ -61,30 +61,26 @@ const siteConfig = {
 
   /* Colors for website */
   colors: {
-    primaryColor: '#2E8555',
-    secondaryColor: '#205C3B',
+    primaryColor: 'rgb(36,40,45,1)',
+    secondaryColor: 'rgb(51,51,51,0.9)',
   },
 
   /* Custom fonts for website */
-  /*
-  fonts: {
-    myFont: [
-      "Times New Roman",
-      "Serif"
-    ],
-    myOtherFont: [
-      "-apple-system",
-      "system-ui"
-    ]
-  },
-  */
+  
+  // fonts: {
+  //   myFont: [
+  //     "Times New Roman",
+  //     "Sim Hei"
+  //   ],
+  // },
+  
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
   copyright: `Copyright © ${new Date().getFullYear()} liu xiyang`,
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: 'default',
+    theme: 'atom-one-dark',
   },
 
   // Add custom scripts here that would be placed in <script> tags.
@@ -104,7 +100,7 @@ const siteConfig = {
 
   // Show documentation's last update time.
   enableUpdateTime: true,
-
+  enableUpdateBy: true,
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   //   repoUrl: 'https://github.com/facebook/test-site',
