@@ -1,0 +1,89 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>HTML文本结构化 · Lxy&#x27;s blog for learning</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;&lt;em&gt;以下内容来自&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Advanced_text_formatting&quot;&gt;MDN text formatting&lt;/a&gt;与自己理解&lt;/em&gt;&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="HTML文本结构化 · Lxy&#x27;s blog for learning"/><meta property="og:type" content="website"/><meta property="og:url" content="https://github.com/liuxiyang641/docusaurus-liuxiyang/"/><meta property="og:description" content="&lt;p&gt;&lt;em&gt;以下内容来自&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Advanced_text_formatting&quot;&gt;MDN text formatting&lt;/a&gt;与自己理解&lt;/em&gt;&lt;/p&gt;
+"/><meta property="og:image" content="https://github.com/liuxiyang641/docusaurus-liuxiyang/img/"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/docusaurus-liuxiyang/"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css"/><link rel="alternate" type="application/atom+xml" href="https://github.com/liuxiyang641/docusaurus-liuxiyang/blog/atom.xml" title="Lxy&#x27;s blog for learning Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://github.com/liuxiyang641/docusaurus-liuxiyang/blog/feed.xml" title="Lxy&#x27;s blog for learning Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/docusaurus-liuxiyang/css/prism.css"/><link rel="stylesheet" href="/docusaurus-liuxiyang/css/main.css"/><script src="/docusaurus-liuxiyang/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/docusaurus-liuxiyang/"><h2 class="headerTitle">Lxy&#x27;s blog for learning</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docusaurus-liuxiyang/docs/html-css/web-basic-intro" target="_self">HTML&amp;CSS</a></li><li class=""><a href="/docusaurus-liuxiyang/docs/react/react-hoc" target="_self">React</a></li><li class=""><a href="/docusaurus-liuxiyang/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>HTML基础</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">WEB基础<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docusaurus-liuxiyang/docs/html-css/web-basic-intro">Web 基础介绍</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">HTML基础<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docusaurus-liuxiyang/docs/html-css/html-basic-head">HTML中的head标签</a></li><li class="navListItem"><a class="navItem" href="/docusaurus-liuxiyang/docs/html-css/html-basic-hyperlink">HTML基础之超链接</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docusaurus-liuxiyang/docs/html-css/html-basic-text-structure">HTML文本结构化</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">CSS基础<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docusaurus-liuxiyang/docs/html-css/css-basic-selector">CSS选择器</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">HTML文本结构化</h1></header><article><div><span><p><em>以下内容来自<a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Introduction_to_HTML/Advanced_text_formatting">MDN text formatting</a>与自己理解</em></p>
+<h3><a class="anchor" aria-hidden="true" id="一-基础文本格式化标签"></a><a href="#一-基础文本格式化标签" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>一，基础文本格式化标签</h3>
+<ul>
+<li><code>&lt;h1&gt;</code>...<code>&lt;h6&gt;</code></li>
+<li>段落标签<code>&lt;p&gt;</code></li>
+<li>无语义文本标签<code>&lt;span&gt;</code></li>
+<li>无序列表<code>&lt;ul&gt;&lt;li&gt;&lt;/li&gt;&lt;/ul&gt;</code></li>
+<li>有序列表<code>&lt;ol&gt;&lt;li&gt;&lt;/li&gt;&lt;/ol&gt;</code></li>
+<li><code>&lt;em&gt;</code>：强调语气词，多是用于表示一种感情，文本会被格式化为斜体，但不应该为了斜体样式使用该标签</li>
+<li><code>&lt;strong&gt;</code>：强调重要单词，可以用于名词、时间等重要信息的单词，文本会变为粗体，同样不应该为了粗体使用该标签</li>
+<li><code>&lt;i&gt;</code>：斜体</li>
+<li><code>&lt;b&gt;</code>：加粗</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="二-高级文本格式化标签"></a><a href="#二-高级文本格式化标签" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>二，高级文本格式化标签</h3>
+<ol>
+<li><p>描述列表（Description lists）：描述一系列的项和它们的定义或者是一系列的问题与答案，使用<code>&lt;dl&gt;</code>（description lists），<code>&lt;dt&gt;</code>（description term），<code>&lt;dd&gt;</code>(description definition)来实现</p></li>
+<li><p>引用：quotations</p>
+<ul>
+<li>块级引用: 使用<code>&lt;blockquote cite=“”&gt;</code>标签实现，该标签内的<code>cite</code>属性为引用源地址，被包裹的引用文本会出现在新的缩进段落中</li>
+<li>行内引用：使用<code>&lt;q cite=“”&gt;</code>标签实现，文本会被包裹在“”内</li>
+</ul></li>
+<li><p>缩写：Abbreviations，例如HTML, CSS等，使用<code>&lt;abbr titlt=&quot;&quot;&gt;</code>，title属性内填写描述文本，当鼠标悬浮在被该标签包裹的文本上时，title属性的值会显示</p></li>
+<li><p><code>&lt;address&gt;</code>:描述谁实现的页面，可以放置联系方式</p></li>
+<li><p>上标与下标：使用<code>&lt;sup&gt;</code>表示上标（superscript），<code>&lt;sub&gt;</code>表示下标（subscript）</p></li>
+<li><p>代码：</p>
+<blockquote>
+<ul>
+<li><code>&lt;code&gt;</code>: For marking up generic pieces of computer <strong>code</strong>.</li>
+<li><code>&lt;pre&gt;</code>: For <strong>retaining whitespace</strong> (generally code blocks) — if you use indentation or excess whitespace inside your text, browsers will ignore it and you will not see it on your rendered page. If you wrap the text in <pre></pre> tags however, your whitespace will be rendered identically to how you see it in your text editor.</li>
+<li><code>&lt;var&gt;</code>: For specifically marking up <strong>variable</strong> names.</li>
+<li><code>&lt;kbd&gt;</code>: For marking up <strong>keyboard (and other types of) input</strong> entered into the computer.</li>
+<li><code>&lt;samp&gt;</code>: For marking up the <strong>output of a computer program</strong>.</li>
+</ul>
+</blockquote></li>
+<li><p>时间：使用<code>&lt;time datetime=&quot;&quot;&gt;</code>实现</p></li>
+</ol>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-4-21 by liuxiyang</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docusaurus-liuxiyang/docs/html-css/html-basic-hyperlink"><span class="arrow-prev">← </span><span>HTML基础之超链接</span></a><a class="docs-next button" href="/docusaurus-liuxiyang/docs/html-css/css-basic-selector"><span>CSS选择器</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/docusaurus-liuxiyang/" class="nav-home"></a><div><h5>Docs</h5><a href="/docusaurus-liuxiyang/docs/en/doc1.html">Getting Started</a><a href="/docusaurus-liuxiyang/docs/en/doc2.html">Guides</a><a href="/docusaurus-liuxiyang/docs/en/doc3.html">API Reference</a></div><div><h5>More</h5><a href="/docusaurus-liuxiyang/blog">Blog</a><a class="github-button" href="https://github.com/liuxiyang641/docusaurus-liuxiyang/" data-icon="octicon-star" data-count-href="/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 liu xiyang</section></footer></div></body></html>

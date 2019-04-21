@@ -1,0 +1,152 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>CSS选择器 · Lxy&#x27;s blog for learning</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;以下内容来自&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Simple_selectors&quot;&gt;MDN&lt;/a&gt;&lt;/p&gt;
+"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="CSS选择器 · Lxy&#x27;s blog for learning"/><meta property="og:type" content="website"/><meta property="og:url" content="https://github.com/liuxiyang641/docusaurus-liuxiyang/"/><meta property="og:description" content="&lt;p&gt;以下内容来自&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Simple_selectors&quot;&gt;MDN&lt;/a&gt;&lt;/p&gt;
+"/><meta property="og:image" content="https://github.com/liuxiyang641/docusaurus-liuxiyang/img/"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/docusaurus-liuxiyang/"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/darcula.min.css"/><link rel="alternate" type="application/atom+xml" href="https://github.com/liuxiyang641/docusaurus-liuxiyang/blog/atom.xml" title="Lxy&#x27;s blog for learning Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://github.com/liuxiyang641/docusaurus-liuxiyang/blog/feed.xml" title="Lxy&#x27;s blog for learning Blog RSS Feed"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><link rel="stylesheet" href="/docusaurus-liuxiyang/css/prism.css"/><link rel="stylesheet" href="/docusaurus-liuxiyang/css/main.css"/><script src="/docusaurus-liuxiyang/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/docusaurus-liuxiyang/"><h2 class="headerTitle">Lxy&#x27;s blog for learning</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docusaurus-liuxiyang/docs/html-css/web-basic-intro" target="_self">HTML&amp;CSS</a></li><li class=""><a href="/docusaurus-liuxiyang/docs/react/react-hoc" target="_self">React</a></li><li class=""><a href="/docusaurus-liuxiyang/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><i></i></div><h2><i>›</i><span>CSS基础</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">WEB基础<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docusaurus-liuxiyang/docs/html-css/web-basic-intro">Web 基础介绍</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">HTML基础<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem"><a class="navItem" href="/docusaurus-liuxiyang/docs/html-css/html-basic-head">HTML中的head标签</a></li><li class="navListItem"><a class="navItem" href="/docusaurus-liuxiyang/docs/html-css/html-basic-hyperlink">HTML基础之超链接</a></li><li class="navListItem"><a class="navItem" href="/docusaurus-liuxiyang/docs/html-css/html-basic-text-structure">HTML文本结构化</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle collapsible">CSS基础<span class="arrow"><svg width="24" height="24" viewBox="0 0 24 24"><path fill="#565656" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></span></h3><ul class="hide"><li class="navListItem navListItemActive"><a class="navItem" href="/docusaurus-liuxiyang/docs/html-css/css-basic-selector">CSS选择器</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">CSS选择器</h1></header><article><div><span><p>以下内容来自<a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Simple_selectors">MDN</a>
+<em>注css的注释是<code>/* */</code></em></p>
+<h3><a class="anchor" aria-hidden="true" id="1-选择器种类"></a><a href="#1-选择器种类" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>1. 选择器种类</h3>
+<p>CSS选择器具有很多种类：</p>
+<blockquote>
+<ul>
+<li><strong>Simple selectors</strong>: Match one or more elements based on element type, class, or id.</li>
+<li><strong>Attribute selectors</strong>: Match one or more elements based on their attributes/attribute values.</li>
+<li><strong>Pseudo-classes</strong>: Match one or more elements that exist in a certain state, such as an element that is being hovered over by the mouse pointer, or a checkbox that is currently disabled or checked, or an element that is the first child of its parent in the DOM tree.</li>
+<li><strong>Pseudo-elements</strong>: Match one or more parts of content that are in a certain position in relation to an element, for example the first word of each paragraph, or generated content appearing just before an element.</li>
+<li><strong>Combinators</strong>: These are not exactly selectors themselves, but ways of combining two or more selectors in useful ways for very specific selections. So for example, you could select only paragraphs that are direct descendants of divs, or paragraphs that come directly after headings.</li>
+<li><strong>Multiple selectors</strong>: Again, these are not separate selectors; the idea is that you can put multiple selectors on the same CSS rule, separated by commas, to apply a single set of declarations to all the elements selected by those selectors.</li>
+</ul>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="2-简单选择器-simple-selectors"></a><a href="#2-简单选择器-simple-selectors" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>2. 简单选择器（Simple selectors）</h3>
+<ol>
+<li><strong>类型选择器/元素选择器</strong>：选择器名字就是大小写不区分的HTML元素名字，如：</li>
+</ol>
+<pre><code class="hljs css language-css"><span class="hljs-selector-tag">p</span> {
+  <span class="hljs-attribute">color</span>: red;
+}
+</code></pre>
+<ol start="2">
+<li><strong>类选择器</strong>：<code>.</code>类名，不同HTML元素可以对应同一个类；一个HTML元素可以具有多个类，如：</li>
+</ol>
+<pre><code class="hljs css language-HTML"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"first done"</span>&gt;</span>Create an HTML document<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"second done"</span>&gt;</span>Create a CSS style sheet<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"third"</span>&gt;</span>Link them all together<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+<span class="hljs-comment">&lt;!--aaa--&gt;</span>
+</code></pre>
+<pre><code class="hljs css language-css"><span class="hljs-selector-class">.first</span> {
+  <span class="hljs-attribute">font-weight</span>: bold;
+}
+</code></pre>
+<ol start="3">
+<li><strong>id选择器</strong>：<code>#</code>id名，id名是唯一的，如果多个元素具有相同的id，在js中无法根据id获取DOM对象。如：</li>
+</ol>
+<pre><code class="hljs css language-css"><span class="hljs-selector-id">#polite</span> {
+  <span class="hljs-attribute">font-family</span>: cursive;
+}
+</code></pre>
+<ol start="4">
+<li><strong>通用选择器</strong>：<code>*</code>，选取所有的元素，如：</li>
+</ol>
+<pre><code class="hljs css language-css">* {
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">5px</span>;
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid black;
+  <span class="hljs-attribute">background</span>: <span class="hljs-built_in">rgba</span>(255,0,0,0.25)
+}
+</code></pre>
+<p><em>注：如果使用它会影响网页性能，尽量勿用</em></p>
+<h3><a class="anchor" aria-hidden="true" id="3-属性选择器"></a><a href="#3-属性选择器" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3. 属性选择器</h3>
+<p>属性选择器会根据元素的属性和属性值来选择匹配的元素，主要标识是<code>[]</code>。属性选择器包含两种选择器，状态和值选择器（<strong>Presence and value</strong>）以及子字符串值选择器（<strong>Substring value</strong>）。</p>
+<h4><a class="anchor" aria-hidden="true" id="31-状态和值选择器"></a><a href="#31-状态和值选择器" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3.1. 状态和值选择器</h4>
+<ul>
+<li><code>[attr]</code>：选择所有具有<code>attr</code>属性的element</li>
+<li><code>[attr=val]</code>：选择所有具有<code>attr</code>属性并且值<strong>只有</strong><code>val</code>的element</li>
+<li><code>[attr~=val]</code>：选择所有具有<code>attr</code>属性并且值<strong>包含</strong><code>val</code>的element</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="32-子字符串值选择器"></a><a href="#32-子字符串值选择器" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>3.2. 子字符串值选择器</h4>
+<p>根据属性值字符串匹配element</p>
+<ul>
+<li><code>[attr^=val]</code>：attr属性值以val开头</li>
+<li><code>[attr$=val]</code>：attr属性值以val结尾</li>
+<li><code>[attr*=val]</code>：attr属性值包含val</li>
+<li><code>[attr|=val]</code>：attr属性值就是<code>val</code>或者以<code>val-</code>开头，主要针对<code>lang=&quot;en&quot; lang=&quot;en-US&quot;</code>这些属性</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="4-伪类与伪元素选择器"></a><a href="#4-伪类与伪元素选择器" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4. 伪类与伪元素选择器</h3>
+<h4><a class="anchor" aria-hidden="true" id="41-伪类选择器"></a><a href="#41-伪类选择器" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4.1. 伪类选择器</h4>
+<p>一个css伪类(<strong>pseudo-class</strong>)是添加在选择器之后，以<code>:</code>开头的关键词，它们是用来代表元素处于某种状态。比如：<code>:active :hover :nth-of-child :nth-of-type</code>。单纯的伪类选择器存在是没有意义的，必须与选择器结合</p>
+<pre><code class="hljs css language-css"><span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:hover</span>,
+<span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:active</span>,
+<span class="hljs-selector-tag">a</span><span class="hljs-selector-pseudo">:focus</span> {
+  <span class="hljs-attribute">color</span>: darkred;
+  <span class="hljs-attribute">text-decoration</span>: none;
+}
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="42-伪元素选择器"></a><a href="#42-伪元素选择器" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>4.2. 伪元素选择器</h4>
+<p>伪元素选择器类似伪类选择器，添加在选择器之后，以<code>::</code>开头，表示选择的element的一部分。如<code>::after ::before ::first-letter</code>。</p>
+<h3><a class="anchor" aria-hidden="true" id="5-联合选择器"></a><a href="#5-联合选择器" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>5. 联合选择器</h3>
+<p>联合选择器（<strong>Combinators</strong>）是根据元素的关系将多个选择器结合起来的选择器。</p>
+<table>
+<thead>
+<tr><th>语法</th><th>语义</th></tr>
+</thead>
+<tbody>
+<tr><td><code>A B</code></td><td>Any element matching B that is a <em>descendant</em> of an element matching A (that is, a child, or a child of a child, etc.)</td></tr>
+<tr><td><code>A &gt; B</code></td><td>Any element matching B that is a <em>direct child</em> of an element matching A.</td></tr>
+<tr><td><code>A + B</code></td><td>Any element matching B that is <em>the next sibling</em> of an element matching A (that is, the next child of the same parent).</td></tr>
+<tr><td><code>A ~ B</code></td><td>Any element matching B that is <em>one of the next siblings</em> of an element matching A (that is, one of the next children of the same parent).</td></tr>
+</tbody>
+</table>
+<p>如：</p>
+<pre><code class="hljs css language-css"><span class="hljs-selector-class">.with-currency</span><span class="hljs-selector-attr">[lang="en-US"]</span> <span class="hljs-selector-tag">td</span><span class="hljs-selector-pseudo">:last-child</span><span class="hljs-selector-pseudo">::before</span> {
+  <span class="hljs-attribute">content</span>: <span class="hljs-string">'$'</span>;
+}
+</code></pre>
+</span></div></article></div><div class="docLastUpdate"><em>Last updated on 2019-4-21 by liuxiyang</em></div><div class="docs-prevnext"><a class="docs-prev button" href="/docusaurus-liuxiyang/docs/html-css/html-basic-text-structure"><span class="arrow-prev">← </span><span>HTML文本结构化</span></a></div></div></div><nav class="onPageNav"></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/docusaurus-liuxiyang/" class="nav-home"></a><div><h5>Docs</h5><a href="/docusaurus-liuxiyang/docs/en/doc1.html">Getting Started</a><a href="/docusaurus-liuxiyang/docs/en/doc2.html">Guides</a><a href="/docusaurus-liuxiyang/docs/en/doc3.html">API Reference</a></div><div><h5>More</h5><a href="/docusaurus-liuxiyang/blog">Blog</a><a class="github-button" href="https://github.com/liuxiyang641/docusaurus-liuxiyang/" data-icon="octicon-star" data-count-href="/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright">Copyright © 2019 liu xiyang</section></footer></div></body></html>
