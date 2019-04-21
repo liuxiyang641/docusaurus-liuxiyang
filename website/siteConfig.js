@@ -47,9 +47,6 @@ const siteConfig = {
     {doc: 'react/react-hoc', label: 'React'},
     {blog: true, label: 'Blog'},
   ],
-  onPageNav: 'separate',
-  docsSideNavCollapsible: true,
-
 
   // If you have users set above, you add it here:
   users,
@@ -61,8 +58,8 @@ const siteConfig = {
 
   /* Colors for website */
   colors: {
-    primaryColor: 'rgb(36,40,45,1)',
-    secondaryColor: 'rgb(51,51,51,0.9)',
+    primaryColor: 'rgb(59,61,62,1)',
+    secondaryColor: 'rgb(81,86,88,1)',
   },
 
   /* Custom fonts for website */
@@ -80,7 +77,7 @@ const siteConfig = {
 
   highlight: {
     // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: 'atom-one-dark',
+    theme: 'darcula',
   },
 
   // Add custom scripts here that would be placed in <script> tags.
@@ -88,6 +85,7 @@ const siteConfig = {
 
   // On page navigation for the current documentation page.
   onPageNav: 'separate',
+  docsSideNavCollapsible: true,
   // No .html extensions for paths.
   cleanUrl: true,
 

@@ -1,8 +1,8 @@
 {
   "docs-of-html&css": {
     "WEB基础": ["html-css/web-basic-intro"],
-    "HTML基础": ["html-css/html-basic-hyperlink"],
-    "CSS基础": [""]
+    "HTML基础": ["html-css/html-basic-head", "html-css/html-basic-hyperlink", "html-css/html-basic-text-structure"],
+    "CSS基础": ["html-css/css-basic-selector"]
   },
   "docs-of-react": {
   	"React基础": [""],
