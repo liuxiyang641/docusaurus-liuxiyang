@@ -20,9 +20,8 @@ const users = [
   },
 ];
 
-
 const siteConfig = {
-  title: 'Lxy\'s blog for learning', // Title for your website.
+  title: "Lxy's blog for learning", // Title for your website.
   tagline: 'A website for docs',
   url: 'https://github.com/liuxiyang641', // Your website URL
   baseUrl: '/docusaurus-liuxiyang/', // Base URL for your project */
@@ -43,9 +42,9 @@ const siteConfig = {
 
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
-    {doc: 'html-css/web-basic-intro', label: 'HTML&CSS'},
-    {doc: 'react/react-hoc', label: 'React'},
-    {blog: true, label: 'Blog'},
+    { doc: 'html-css/web-basic-intro', label: 'HTML&CSS' },
+    { doc: 'react/react-hoc', label: 'React' },
+    { blog: true, label: 'Blog' },
   ],
 
   // If you have users set above, you add it here:
@@ -63,14 +62,13 @@ const siteConfig = {
   },
 
   /* Custom fonts for website */
-  
+
   // fonts: {
   //   myFont: [
   //     "Times New Roman",
   //     "Sim Hei"
   //   ],
   // },
-  
 
   // This copyright info is used in /core/Footer.js and blog RSS/Atom feeds.
   copyright: `Copyright © ${new Date().getFullYear()} liu xiyang`,

@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/liuxiyang641/docusaurus-liuxiyang/issues"
   },
-  "homepage": "https://github.com/liuxiyang641/docusaurus-liuxiyang#readme"
+  "homepage": "https://github.com/liuxiyang641/docusaurus-liuxiyang#readme",
+  "devDependencies": {
+    "prettier": "1.17.0"
+  }
 }

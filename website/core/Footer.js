@@ -40,9 +40,7 @@ class Footer extends React.Component {
             <a href={this.docUrl('doc1.html', this.props.language)}>
               Getting Started
             </a>
-            <a href={this.docUrl('doc2.html', this.props.language)}>
-              Guides
-            </a>
+            <a href={this.docUrl('doc2.html', this.props.language)}>Guides</a>
             <a href={this.docUrl('doc3.html', this.props.language)}>
               API Reference
             </a>
@@ -57,7 +55,8 @@ class Footer extends React.Component {
               data-count-href="/stargazers"
               data-show-count="true"
               data-count-aria-label="# stargazers on GitHub"
-              aria-label="Star this project on GitHub">
+              aria-label="Star this project on GitHub"
+            >
               Star
             </a>
           </div>
